@@ -6,12 +6,16 @@ import { AppComponent } from './app.component';
 import { PasswordPipe } from './password.pipe';
 import { DeletewsPipe } from './deletews.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MenuItemComponent } from './menu-item/menu-item.component';
+import { MainNavigationComponent } from './main-navigation/main-navigation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PasswordPipe,
-    DeletewsPipe
+    DeletewsPipe,
+    MenuItemComponent,
+    MainNavigationComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ContactsService } from './contacts.service';
 //import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -7,7 +8,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   /*title = "first session";
   thisYear = 2021;
@@ -54,208 +55,291 @@ export class AppComponent {
 
 
   /************ list feeds************ */
-/*
-  feeds = [
-    { title:"exmpl title", description:'exmpl description', likes:15 , didLike : false  },
-    { title:"exmpl title", description:'exmpl description', likes:16  , didLike : true },
-    { title:"exmpl title", description:'exmpl description', likes:0  , didLike : false },
-    
-  ];
-
-  incrementLikes( index ){
-    if (this.feeds[index].didLike == false) {
-      this.feeds[index].likes++;
-    }else{
-      this.feeds[index].likes--;
-    }
-
-    this.feeds[index].didLike = ! this.feeds[index].didLike;
-  }
-*/
-
-/*
-products = [
-  { title:"Samsung a70", price:"1200", category:"SMARTPHONE" , addDate: new Date() },
-  { title:"iphone 12", price:"3000", category:"SMARTPHONE", addDate: new Date() },
-  { title:"oppo", price:"700", category:"SMARTPHONE", addDate: new Date() },
-  { title:"TV LG 50", price:"1700", category:"TV", addDate: new Date() },
-  { title:"LG PHONE", price:"1700", category:"SMARTPHONE", addDate: new Date() }
-  
-]
-
-productsToSearchIn = [
-  { title:"Samsung a70", price:"1200", category:"SMARTPHONE" , addDate: new Date() },
-  { title:"iphone 12", price:"3000", category:"SMARTPHONE", addDate: new Date() },
-  { title:"oppo", price:"700", category:"SMARTPHONE", addDate: new Date() },
-  { title:"TV LG 50", price:"1700", category:"TV", addDate: new Date() },
-  { title:"LG PHONE", price:"1700", category:"SMARTPHONE", addDate: new Date() }
-  
-  
-]
-
-key="";
-category="all";
-
-keyPress(e){
-  const value = e.target.value;
-  this.key = value;
-  this.search();
-}
-listUpdated(e){ 
-  const value = e.target.value;
-  this.category = value;
-
-  this.search();
-}
-
-
-search(){
-  let result = [];
-  
-    for (let i = 0; i < this.products.length; i++) {
-      const p = this.products[i];
+  /*
+    feeds = [
+      { title:"exmpl title", description:'exmpl description', likes:15 , didLike : false  },
+      { title:"exmpl title", description:'exmpl description', likes:16  , didLike : true },
+      { title:"exmpl title", description:'exmpl description', likes:0  , didLike : false },
       
-      if ((p.title+' '+p.price).toLowerCase().indexOf( this.key.toLowerCase() ) != -1)  {
-        if (this.category !='all') {
-          if (p.category == this.category) {
+    ];
+  
+    incrementLikes( index ){
+      if (this.feeds[index].didLike == false) {
+        this.feeds[index].likes++;
+      }else{
+        this.feeds[index].likes--;
+      }
+  
+      this.feeds[index].didLike = ! this.feeds[index].didLike;
+    }
+  */
+
+  /*
+  products = [
+    { title:"Samsung a70", price:"1200", category:"SMARTPHONE" , addDate: new Date() },
+    { title:"iphone 12", price:"3000", category:"SMARTPHONE", addDate: new Date() },
+    { title:"oppo", price:"700", category:"SMARTPHONE", addDate: new Date() },
+    { title:"TV LG 50", price:"1700", category:"TV", addDate: new Date() },
+    { title:"LG PHONE", price:"1700", category:"SMARTPHONE", addDate: new Date() }
+    
+  ]
+  
+  productsToSearchIn = [
+    { title:"Samsung a70", price:"1200", category:"SMARTPHONE" , addDate: new Date() },
+    { title:"iphone 12", price:"3000", category:"SMARTPHONE", addDate: new Date() },
+    { title:"oppo", price:"700", category:"SMARTPHONE", addDate: new Date() },
+    { title:"TV LG 50", price:"1700", category:"TV", addDate: new Date() },
+    { title:"LG PHONE", price:"1700", category:"SMARTPHONE", addDate: new Date() }
+    
+    
+  ]
+  
+  key="";
+  category="all";
+  
+  keyPress(e){
+    const value = e.target.value;
+    this.key = value;
+    this.search();
+  }
+  listUpdated(e){ 
+    const value = e.target.value;
+    this.category = value;
+  
+    this.search();
+  }
+  
+  
+  search(){
+    let result = [];
+    
+      for (let i = 0; i < this.products.length; i++) {
+        const p = this.products[i];
+        
+        if ((p.title+' '+p.price).toLowerCase().indexOf( this.key.toLowerCase() ) != -1)  {
+          if (this.category !='all') {
+            if (p.category == this.category) {
+              result.push(p);
+            }
+          }else{
             result.push(p);
           }
-        }else{
-          result.push(p);
         }
       }
-    }
-  
-  this.productsToSearchIn = result;
-  
-}*/
+    
+    this.productsToSearchIn = result;
+    
+  }*/
 
 
 
 
-/********************* forms ******************** */
+  /********************* forms ******************** */
 
 
-/*
-authForm = new FormGroup({
-  // key:values
-  username: new FormControl('',Validators.required),
-  password: new FormControl('',Validators.required),
-  email: new FormControl('',Validators.email),
-});
-
-
-connectNow(){
-  const authValues = this.authForm.value;
-
-  console.log(authValues);
-
-  const authFormStatus = this.authForm.valid;
-
-  console.log(authFormStatus);
-
-
-  console.log(this.authForm);
-  
-  
-  
-  
-}
-
-*/
-
-
-/*************forms 2******** */
-
-/*
-products = [
-  { id:"1", name:"pizza" , options:[ { id:"1",name:"thon", selected:false, },{ id:"2",name:"fromage", selected:false, },{ id:"3",name:"jombon", selected:false, } ] },
-  { id:"2", name:"tacos", options:[ { id:"4",name:"frise", selected:false, },{ id:"5",name:"fromage", selected:false, },{ id:"6",name:"coke", selected:false, } ] }
-]
-
-ordre = new FormGroup({
-  id_product : new FormControl('')
-})
-
-
-options = [];
-
-
-
-//order to send { idProduct:"xxx", options:[x,x,x,x] }
- 
-
-
- placeOrdre(){
-   const idProduit = this.ordre.value.id_product;
-   let chosenOptions = this.options.filter((p)=> p.selected == true)
-
-
-   const ordre = {
-     id_produit : idProduit,
-     options:chosenOptions
-   }
-
-   console.log(ordre);
-   
-   
-   
- }
-
- updateOptionStat(i){
-   this.options[i].selected = ! this.options[i].selected;
- }
-
- updateOptionList(){
-  console.log("changed");
-  let search = this.products.filter((p)=> p.id == this.ordre.value.id_product );
-
-  console.log(search);
-  this.options = search[0].options;
-  
-
-
-
- }*/
-
-
-
- /*************** form3 stepper ************* */
-
- // create user account
- // step 1 user info
- // step 2 user account
- // step 3 user payment info
-
- step = 0;
-
- accountForm = new FormGroup({
-
-  first : new FormGroup({
+  /*
+  authForm = new FormGroup({
+    // key:values
     username: new FormControl('',Validators.required),
-    displayname: new FormControl('',Validators.required),
-  }),
-  second: new FormGroup({
     password: new FormControl('',Validators.required),
     email: new FormControl('',Validators.email),
+  });
   
-  }),
-  third: new FormGroup({
-    creditcard: new FormControl('',Validators.required),
-    expireDate : new FormControl('',Validators.required),
+  
+  connectNow(){
+    const authValues = this.authForm.value;
+  
+    console.log(authValues);
+  
+    const authFormStatus = this.authForm.valid;
+  
+    console.log(authFormStatus);
+  
+  
+    console.log(this.authForm);
+    
+    
+    
+    
+  }
+  
+  */
+
+
+  /*************forms 2******** */
+
+  /*
+  products = [
+    { id:"1", name:"pizza" , options:[ { id:"1",name:"thon", selected:false, },{ id:"2",name:"fromage", selected:false, },{ id:"3",name:"jombon", selected:false, } ] },
+    { id:"2", name:"tacos", options:[ { id:"4",name:"frise", selected:false, },{ id:"5",name:"fromage", selected:false, },{ id:"6",name:"coke", selected:false, } ] }
+  ]
+  
+  ordre = new FormGroup({
+    id_product : new FormControl('')
   })
- })
-
-
-
- createUser(){
-   console.log(this.accountForm);
+  
+  
+  options = [];
+  
+  
+  
+  //order to send { idProduct:"xxx", options:[x,x,x,x] }
    
- }
+  
+  
+   placeOrdre(){
+     const idProduit = this.ordre.value.id_product;
+     let chosenOptions = this.options.filter((p)=> p.selected == true)
+  
+  
+     const ordre = {
+       id_produit : idProduit,
+       options:chosenOptions
+     }
+  
+     console.log(ordre);
+     
+     
+     
+   }
+  
+   updateOptionStat(i){
+     this.options[i].selected = ! this.options[i].selected;
+   }
+  
+   updateOptionList(){
+    console.log("changed");
+    let search = this.products.filter((p)=> p.id == this.ordre.value.id_product );
+  
+    console.log(search);
+    this.options = search[0].options;
+    
+  
+  
+  
+   }*/
 
 
- next(){
-   this.step++;
- }
+
+  /*************** form3 stepper ************* */
+
+  // create user account
+  // step 1 user info
+  // step 2 user account
+  // step 3 user payment info
+  /*
+   step = 0;
+  
+   accountForm = new FormGroup({
+  
+    first : new FormGroup({
+      username: new FormControl('',Validators.required),
+      displayname: new FormControl('',Validators.required),
+    }),
+    second: new FormGroup({
+      password: new FormControl('',Validators.required),
+      email: new FormControl('',Validators.email),
+    
+    }),
+    third: new FormGroup({
+      creditcard: new FormControl('',Validators.required),
+      expireDate : new FormControl('',Validators.required),
+    })
+   })
+  
+  
+  
+   createUser(){
+     console.log(this.accountForm);
+     
+   }
+  
+  
+   next(){
+     this.step++;
+   }*/
+  /*
+  
+   step = 0;
+  
+   stepOne = new FormGroup({
+    username : new FormControl('',Validators.required),
+  
+    address : new FormGroup({
+      rue: new FormControl('',Validators.required),
+      zip: new FormControl('',Validators.required),
+      city: new FormControl('',Validators.required),
+      
+    })
+  })
+  
+  
+  stepTwo = new FormGroup({
+    email : new FormControl('')
+  })
+  
+  
+  next(){
+    console.log(this.stepOne.value);
+    this.step++;
+  }
+  
+  previous(){
+    this.step--;
+  }*/
+
+
+
+
+  /***************componenets************* */
+
+
+
+  menu = [
+    {
+      title: "hello world",
+      subtitle: "sub world",
+      badge: 8
+    },
+    {
+      title: "hello world 19",
+      subtitle: "sub world",
+      badge: 19
+    },
+    {
+      title: "hello world 15",
+      subtitle: "sub world",
+      badge: 23
+    },
+    {
+      title: "hello world 3",
+      subtitle: "sub world",
+      badge: 5
+    },
+
+  ]
+
+  contacts = [];
+
+  contactForm = new FormGroup({
+    fullname:new FormControl(''),
+    phone:new FormControl('')
+  })
+
+
+  constructor(private contactsService: ContactsService) { }
+
+  ngOnInit(): void {
+    this.contacts = this.contactsService.getContactsList();
+  }
+
+  addContact(){
+    this.contactsService.addNewContact(this.contactForm.value);
+    this.contactForm.reset();
+  }
+
+
+
+
 
 }

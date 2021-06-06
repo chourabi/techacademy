@@ -119,7 +119,7 @@
 
   <button (click)="placeOrdre()" >place ordre</button>-->
 
-
+<!--
   
   <form [formGroup]="accountForm" (ngSubmit)="createUser()" >
 
@@ -162,4 +162,91 @@
     
     <button type="button" *ngIf="step != 0" (click)=" step = step - 1 ; " >PREVIOUS</button>
     <button type="submit" >SUBMIT</button>
+  </form>-->
+
+
+<!--forms stepper second method-->
+
+<!--
+  <form [formGroup]="stepOne" *ngIf=" step == 0 " >
+
+    <input type="text" placeholder="username" formControlName="username"><br><br>
+
+    <label for="">Address</label>
+
+    <div formGroupName="address" >
+      <input type="text" placeholder="rue exmple 00" formControlName="rue"> <br><br>
+
+      <input type="text" placeholder="rue exmple 00" formControlName="zip"> <br><br>
+
+      <input type="text" placeholder="rue exmple 00" formControlName="city"> <br><br>
+
+      
+    </div>
+
+
+    <button (click)="next()" [disabled]="! stepOne.valid" >NEXT</button>
+
+
   </form>
+
+  <form [formGroup]="stepTwo" *ngIf=" step == 1 " >
+
+    <input type="text" placeholder="email" formControlName="email">
+
+
+    <button (click)="previous()" >PREVIOUS</button>
+    <button>SUBMIT</button>
+
+
+  </form>-->
+
+<!-- bootstrap -->
+
+
+<app-main-navigation></app-main-navigation>
+
+
+<div class="container">
+  <div class="alert alert-warning" role="alert">
+    we have {{contacts.length}} contacts in our application
+  </div>
+
+  <div class="row">
+    <div class="col-sm-3">
+      <ol class="list-group list-group-numbered">
+        
+        
+        <app-menu-item *ngFor="let m of menu" badge="{{m.badge}}"  title="{{m.title}}" subtitle="{{m.subtitle}}"  ></app-menu-item>
+
+
+      </ol>
+    </div>
+
+    <div class="col-sm-9">
+      <div class="card">
+        <div class="card-body">
+
+            <h3>Add new Contact</h3>
+            <form [formGroup]="contactForm" >
+              <div class="form-group">
+                <label for="">Fullname</label>
+                <input type="text" class="form-control" placeholder="contact fullname" formControlName="fullname">
+              </div>
+              <div class="form-group">
+                <label for="">Phone</label>
+                <input type="text" class="form-control" placeholder="contact phone" formControlName="phone">
+              </div>
+              <div class="form-group mt-2">
+                <button class="btn btn-info" (click)="addContact()">Add contact</button>
+              </div>
+            </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
