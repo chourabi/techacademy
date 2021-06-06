@@ -1,0 +1,165 @@
+<!--<h1>
+  {{ title }} / {{ thisYear }}
+</h1>
+
+<h3>list of fruits</h3>
+
+<ul>
+  <li *ngFor=" let f of fruits; let i = index; " >
+     {{ (i+1) }} - {{ f }}
+  </li>
+</ul>
+
+<h3>List of employees</h3>
+
+<ul>
+  <li *ngFor="let e of employees">
+    <strong>{{ e.fullname }}</strong><br>
+    <small> {{e.phonenumber}} </small> / <small> {{e.email}} </small>
+  </li>
+</ul>-->
+
+
+<!--***************************************************************-->
+
+<!--
+<img [src]="imgURL" alt="" width="150px" />
+
+<p [innerHTML]="description" [style.color]="success == true ? 'red' : 'green'  " ></p>
+
+<button [disabled]="canClickOnButton" (click)=" updateState($event) " >click me</button>
+-->
+
+<!--**************** feeds************-->
+<!--
+<ul>
+  <li *ngFor="let f of feeds; let i=index;">
+    <h3> {{f.title}} </h3>
+    <p> {{f.description}} </p>
+    <button (click)="incrementLikes(i)" > {{f.likes}} {{ f.didLike == true ? 'dislike' : 'like' }}</button>
+  </li>
+</ul>
+
+
+
+
+<input type="text" (keyup)="keyPress($event)" >
+
+<select (change)="listUpdated($event)" >
+  <option value="all">All</option>
+  <option value="TV">TV</option>
+  <option value="SMARTPHONE">Smart phone</option>
+  
+</select>
+
+<ul>
+  <li *ngFor=" let p of productsToSearchIn ">
+    <p>{{ p.title | password:[1,2,3,4,5,6,7]  }} - {{ p.price | currency:' TND ' }}</p>
+    <p>
+      <small> 
+        {{ p.addDate | date:'medium' }}
+      </small>
+    </p>
+  </li>
+</ul>
+
+
+<p>
+ 
+  {{ "hello      world      ced czczcz zzddzd   zdz  " | deletews  }}  
+
+</p>-->
+
+
+
+<!-- forms -->
+
+
+<!--
+<form [formGroup]=" authForm " (ngSubmit)="connectNow()" >
+
+  <label for="">Email 
+    <span style="color: red;" *ngIf="authForm.value.email == '' "  >*</span> 
+    <span style="color: orange;" *ngIf="authForm.controls.email.valid == false "  >*</span>
+
+  </label><br>
+  <input type="email"  formControlName="email" > <br>
+
+  <label for="">Username</label><br>
+  <input type="text"  formControlName="username" [style.borderColor]=" (authForm.controls.username.touched == true) ? 'red':'black' " > <br>
+
+  <label for="">password</label><br>
+  <input type="password" formControlName="password">
+
+  <br>
+
+  <button type="submit"  >connect</button>
+
+</form>-->
+
+<!--
+  <form [formGroup]="ordre" >
+    
+  <label for="">product</label><br>
+  <select formControlName="id_product" (change)="updateOptionList()" >
+    <option value="">please choose a product</option>
+    <option value="1">pizza</option>
+    <option value="2">tacos</option>
+    
+  </select>
+
+  </form>
+
+  <ul>
+    <li *ngFor="let o of options;let i = index;">
+      <input type="checkbox" (click)="updateOptionStat(i)" > <label for="">{{o.name}}</label>
+    </li>
+  </ul>
+
+
+  <button (click)="placeOrdre()" >place ordre</button>-->
+
+
+  
+  <form [formGroup]="accountForm" (ngSubmit)="createUser()" >
+
+    <section *ngIf="step == 0" formGroupName="first">
+      <label for="">username</label><br>
+      <input type="text" formControlName="username"><br>
+      <label for="">displayname</label><br>
+      <input type="text" formControlName="displayname"><br>
+      
+      <button type="button" (click)="next()" [disabled]="! accountForm.controls.first.valid" >NEXT</button>
+    </section>
+
+
+    <section *ngIf="step == 1" formGroupName="second">
+      <label for="">Email  </label><br>
+      <input type="email"  formControlName="email" > <br>
+    
+
+      <label for="">password</label><br>
+      <input type="password" formControlName="password"><br>
+
+      <button type="button" (click)="next()" [disabled]="! accountForm.controls.second.valid" >NEXT</button>
+
+    </section>
+
+
+
+
+    <section *ngIf="step == 2" formGroupName="third">
+
+      <label for="">credit card  </label><br>
+      <input type="number"  formControlName="creditcard" > <br>
+    
+
+      <label for="">expire Date</label><br>
+      <input type="month" formControlName="expireDate"><br>
+
+    </section>
+
+    
+    <button type="button" *ngIf="step != 0" (click)=" step = step - 1 ; " >PREVIOUS</button>
+    <button type="submit" >SUBMIT</button>
+  </form>
