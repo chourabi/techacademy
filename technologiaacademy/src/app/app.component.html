@@ -203,14 +203,12 @@
 
 <!-- bootstrap -->
 
-
+<!--
 <app-main-navigation></app-main-navigation>
 
 
 <div class="container">
-  <div class="alert alert-warning" role="alert">
-    we have {{contacts.length}} contacts in our application
-  </div>
+
 
   <div class="row">
     <div class="col-sm-3">
@@ -243,10 +241,57 @@
             </form>
 
         </div>
+
+
+        <div class="py-2">
+          <button class="btn btn-primary btn-block" (click)="sendPush()" >SEND PUSH NOTIFICATION</button>
+
+        </div>
+
+
+
+        <div class="row">
+          <div class="col">
+            <app-view-a></app-view-a>
+          </div>
+          <div class="col">
+            <app-view-b></app-view-b>
+          </div>
+          <div class="col">
+            <app-view-c></app-view-c>
+          </div>
+        </div>
+
+
+
+
+
+
+
       </div>
+
+
+
+
     </div>
   </div>
 
 
 
-</div>
+</div>-->
+
+
+<!-- routing -->
+
+
+<ul class="nav">
+    
+  <li class="nav-item">
+    <a class="nav-link" routerLinkActive="active" routerLink="/home">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLinkActive="active" routerLink="/contact">contact</a>
+  </li>
+</ul>
+
+<router-outlet></router-outlet>

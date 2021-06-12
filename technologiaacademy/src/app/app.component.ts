@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ContactsService } from './contacts.service';
+import { PushNotificationsService } from './push-notifications.service';
 //import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -327,7 +328,7 @@ export class AppComponent implements OnInit {
   })
 
 
-  constructor(private contactsService: ContactsService) { }
+  constructor(private contactsService: ContactsService, private push:PushNotificationsService) { }
 
   ngOnInit(): void {
     this.contacts = this.contactsService.getContactsList();
@@ -338,6 +339,10 @@ export class AppComponent implements OnInit {
     this.contactForm.reset();
   }
 
+
+  sendPush(){
+    this.push.pushNotification();
+  }
 
 
 
