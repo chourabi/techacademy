@@ -10,7 +10,7 @@ export class ViewAComponent implements OnInit {
 
   count = 0;
 
-  constructor( private push:PushNotificationsService ) { }
+  constructor( public push:PushNotificationsService ) { }
 
   ngOnInit(): void {
     this.count = this.push.getNotificationsCount();

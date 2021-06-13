@@ -1,0 +1,29 @@
+
+
+<div class="container mt-5">
+
+    <form [formGroup]="auth" (ngSubmit)="connect()">
+        <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">User</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control " formControlName="username" >
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="inputPassword" class="col-sm-2 col-form-label" >Password</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control"   formControlName="password">
+            </div>
+          </div>
+
+          <div class="mb-3 row" *ngIf="errMsg!=''">
+            <div class="alert alert-warning">
+                {{errMsg}}
+            </div>
+          </div>
+          
+          <div class="mb-3 row">
+            <button class="btn btn-primary" [disabled]=" ! auth.valid" >connexion</button>
+          </div>
+    </form>
+</div>

@@ -1,0 +1,8 @@
+<p>produits works!</p>
+
+<ul>
+    <li *ngFor="let p of produits">
+        {{p.title}}
+        <a href="#" (click)="goTo($event,p)"  >more détails</a>
+    </li>
+</ul>

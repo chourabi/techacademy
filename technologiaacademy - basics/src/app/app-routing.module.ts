@@ -5,6 +5,8 @@ import { ArticlePageComponent } from './article-page/article-page.component';
 import { ContactPageComponent } from './contact-page/contact-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { MoreInfoComponent } from './more-info/more-info.component';
+import { ProduitDetailsComponent } from './produit-details/produit-details.component';
+import { ProduitsComponent } from './produits/produits.component';
 
 
 const routes: Routes = [
@@ -16,8 +18,12 @@ const routes: Routes = [
     
   ]
 },
-  { path:'contact' , component:ContactPageComponent },
-  { path:'article/:id' , component:ArticlePageComponent },
+{ path:'contact' , component:ContactPageComponent },
+{ path:'article/:id' , component:ArticlePageComponent },
+
+  { path:'produits' , component:ProduitsComponent },
+  //{ path:'produits/:id/:title' , component:ProduitDetailsComponent },
+  { path:'produits/:id' , component:ProduitDetailsComponent },
   
   
 ];

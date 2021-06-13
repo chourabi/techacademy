@@ -16,6 +16,8 @@ import { ContactPageComponent } from './contact-page/contact-page.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { MoreInfoComponent } from './more-info/more-info.component';
 import { ArticlePageComponent } from './article-page/article-page.component';
+import { ProduitsComponent } from './produits/produits.component';
+import { ProduitDetailsComponent } from './produit-details/produit-details.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { ArticlePageComponent } from './article-page/article-page.component';
     ContactPageComponent,
     AboutUsComponent,
     MoreInfoComponent,
-    ArticlePageComponent
+    ArticlePageComponent,
+    ProduitsComponent,
+    ProduitDetailsComponent
   ],
   imports: [
     BrowserModule,
