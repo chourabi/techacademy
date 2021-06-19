@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -8,10 +9,23 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(private router:Router, private http:HttpClient) { }
 
   ngOnInit(): void {
+    
+    this.http.get('https://jsonplaceholder.typicode.com/posts').subscribe((data)=>{
+      console.log(data);
+      
+    },(err)=>{
+      alert("oups");
+    })
+    
+ 
   }
+
+
+
+  
 
   logout(){
     if (confirm('do you really wanna log out ?')) {
@@ -20,4 +34,22 @@ export class HomeComponent implements OnInit {
     }
   }
 
+
+  goToTheGiftShop(err:boolean){
+    var promise = new Promise((resolve,reject)=>{
+      setTimeout(() => {
+        // todo
+
+        if (err === true) {
+          reject({success:false,message:"oups"})
+        }else{
+          resolve({succes:true, status:"baked"});
+        }
+        
+      }, 6000);
+    })
+
+    return promise;
+  }
+ 
 }

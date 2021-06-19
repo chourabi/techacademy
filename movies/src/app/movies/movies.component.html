@@ -1,0 +1,23 @@
+
+<div class="container">
+    <div class="row mt-3">
+        <div class="form-group">
+            <label>Searching for...</label>
+            <input (keyup)="searchingFor($event)" type="text" class="form-control" name="" id="">
+        </div>
+    </div>
+
+
+    <div class="row mt-3">
+        <div *ngFor="let m of moviesList" class="col-sm-6 col-md-3">
+            <div class="card" style="width: 100%;">
+                <img width="100%" [src]="m.large_cover_image" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{m.title}}</h5>
+                   <a [routerLink]=" '/movie/'+m.id " class="btn btn-primary">Details</a>
+                </div>
+              </div>
+        </div>
+        
+    </div>
+</div>
