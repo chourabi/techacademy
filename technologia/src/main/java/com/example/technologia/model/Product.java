@@ -1,10 +1,17 @@
 package com.example.technologia.model;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 //import javax.validation.constraints.Size;
 
 @Entity
-@Table( name="products" )
+@Table( name="products",   uniqueConstraints = {
+		@UniqueConstraint( columnNames = { "title" } )
+} )
+
+
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","magazin"})
 public class Product {
 	
 	
@@ -13,7 +20,7 @@ public class Product {
 	private Long id;
 	
 	
-	@Column(name ="title", nullable = false ) 
+	@Column(name ="title") 
 	private String title;
 	
 	@Column(name ="code", nullable = false )
@@ -21,9 +28,40 @@ public class Product {
 	
 	@Column(name ="quantity", nullable = false )
 	private int quantity;
+	
+	@Column(name ="price", nullable = false )
+	private float price;
+	
+	
+	@ManyToOne( )
+	@JoinColumn(nullable = true,name="magazins_id")
+	
+	
+	private Magazin magazin;
+	
 
 	
 	
+	public Magazin getMagazin() {
+		return magazin;
+	}
+
+
+	public void setMagazin(Magazin magazin) {
+		this.magazin = magazin;
+	}
+
+
+	public float getPrice() {
+		return price;
+	}
+
+
+	public void setPrice(float price) {
+		this.price = price;
+	}
+
+
 	public Product(Long id, String title, String code, int quantity) {
 		super();
 		this.id = id;

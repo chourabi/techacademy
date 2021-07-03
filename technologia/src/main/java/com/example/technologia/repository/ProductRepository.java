@@ -6,5 +6,5 @@ import com.example.technologia.model.Product;
 
 
 public interface ProductRepository extends JpaRepository<Product,Long> {
-
+	
 }

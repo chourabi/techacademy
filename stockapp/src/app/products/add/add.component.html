@@ -1,0 +1,66 @@
+
+<div class="mt-5">
+    <h3> Products List </h3>
+</div>
+
+
+<div class="mt-2">
+    <button class="btn btn-primary" (click)="back()">Back</button>
+</div> 
+
+<hr>
+
+<!--
+  prodAddForm = new FormGroup({
+    title: new FormControl('',Validators.required),
+    ref: new FormControl('',Validators.required),
+    quantity: new FormControl('',Validators.required),
+    price: new FormControl('',Validators.required),
+    idmagazin: new FormControl('',Validators.required),
+
+ 
+    
+  })
+-->
+
+
+
+<div class="row">
+    <div class="col-12">
+        <form [formGroup]="prodAddForm" (ngSubmit)="saveProduct()" >
+
+            <div class="form-group">
+                <label for="">Title</label>
+                <input type="text" class="form-control" formControlName="title" >
+            </div>
+            <div class="form-group">
+                <label for="">ref</label>
+                <input type="text" class="form-control" formControlName="ref" >
+            </div>
+            <div class="form-group">
+                <label for="">quantity</label>
+                <input type="number" class="form-control" formControlName="quantity" >
+            </div>
+            <div class="form-group">
+                <label for="">price</label>
+                <input type="number" class="form-control" formControlName="price" >
+            </div>
+            
+
+
+            <div>
+                <label for="">Magazin</label>
+                <select class="form-control" formControlName="idmagazin">
+                    <option value="">Please choose a magazin</option>
+
+                    <option value="{{m.id}}" *ngFor="let m of magazins">{{m.title}}</option>
+                </select>
+            </div>
+
+            <div class="form-group mt-2">
+                <button [disabled]="! prodAddForm.valid" type="submit" class="btn btn-success">Save</button>
+            </div>
+
+        </form>
+    </div>
+</div>

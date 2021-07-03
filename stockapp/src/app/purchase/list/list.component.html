@@ -1,0 +1,101 @@
+
+
+<div class="mt-5">
+    <h3> Purchases List </h3>
+</div>
+
+
+ 
+
+
+<hr>
+
+
+<div *ngIf="isLoading == true " class="text-center">
+    <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+</div>
+
+
+
+<div *ngIf="isLoading == false ">
+    <div>
+    
+    </div>
+    
+    <div *ngIf="errMessage!='' " class="mt-2 mb-2 ">
+        <div class="alert alert-danger">
+            {{errMessage}}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                <select class="form-control" (change)="updateList($event)">
+                    <option value="-1">All</option>
+                    <option value="{{c.id}}" *ngFor="let c of clients">{{c.fullname}}</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <button class="btn btn-primary" (click)="getPurchases()">Reset</button>
+            </div>
+            
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Client</th>
+                        <th>Product</th>
+                        <th>Quantity</th> 
+                        <th>Unit price</th> 
+                        
+                        <th>Total</th> 
+                        
+                        <th>Date</th> 
+
+    
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let p of purchases;let j = index;">
+                        <td>{{j+1}}</td>
+                        <td>
+                            {{p.client.fullname}}
+                        </td>
+                        <td>
+                            {{p.product.title}}
+                        </td>
+                        <td>
+                            {{p.quantity}}
+                        </td>
+                        <td>
+                            {{p.product.price | currency}}
+                        </td>
+                        <td>
+                            {{  ((p.product.price) * (p.quantity)  ) | currency}}
+                        </td>
+
+                        <td>
+                            {{ p.date | date:'medium' }}
+                        </td>
+                        
+                        
+                        
+                         
+                         
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
