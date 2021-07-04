@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -8,6 +8,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+
+  username="Chargement...";
 
   constructor(private router:Router, private http:HttpClient) { }
 
@@ -19,10 +22,31 @@ export class HomeComponent implements OnInit {
     },(err)=>{
       alert("oups");
     })
+
+
+    this.getUserInfo();
     
  
   }
 
+
+  getUserInfo(){
+    
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':"application/json",
+        "authorization":localStorage.getItem('tech-token')
+      })
+    }
+
+    this.http.get('http://localhost:8080/api/auth/info',httpOptions).subscribe((data:any)=>{
+      console.log(data);
+      this.username = data.username;
+      
+    },(err)=>{
+      alert("oups");
+    })
+  }
 
 
   
